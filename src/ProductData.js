@@ -104,13 +104,12 @@ const ProductData = () => {
     }
 
     const { userId } = useParams();
-    console.log({ userId });
     const [product, setProduct] = useState(null);
     const [error, setError] = useState(null);
     useEffect(() => {
         const fetchProduct = async () => {
             try {
-                const response = await axios.get(`http://127.0.0.1:8000/api/product/get/${userId}`);
+                const response = await axios.get(`${process.env.REACT_APP_HOSTING_URL}/api/product/get/${userId}`);
                 setProduct(response.data);
             } catch (err) {
                 setError(err.message);
